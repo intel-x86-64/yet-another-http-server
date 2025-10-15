@@ -11,6 +11,7 @@ class JsonParser {
 
 public:
   JsonParser(const std::string configFilePath);
-  std::string getConfig();
+  void start();
+  std::string getConfigText();
   void openConfigurationFile();
 };
