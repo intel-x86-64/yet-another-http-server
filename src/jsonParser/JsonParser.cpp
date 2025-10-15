@@ -6,7 +6,7 @@
 JsonParser::JsonParser(const std::string configFilePath)
     : configFilePath(configFilePath) {}
 
-std::string JsonParser::getConfigText() {
+void JsonParser::getConfigText() {
   std::string line;
   std::ifstream file("config.json");
 
