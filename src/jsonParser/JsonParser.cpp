@@ -1,5 +1,6 @@
 #include "JsonParser.h"
 #include <fstream>
+#include <iostream>
 #include <stdexcept>
 #include <string>
 
@@ -23,4 +24,12 @@ void JsonParser::getConfigText() {
   }
 
   file.close();
+}
+
+void JsonParser::start() {
+  try {
+    this->getConfigText();
+  } catch (const std::runtime_error &ex) {
+    std::cerr << "Error: " << ex.what() << std::endl;
+  }
 }
