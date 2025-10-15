@@ -6,9 +6,9 @@
 #include <string>
 
 class JsonParser {
-
+  std::string configFilePath;
   std::string configText;
 
 public:
-  JsonParser();
+  JsonParser(const std::string configFilePath);
 };
