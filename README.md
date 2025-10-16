@@ -7,10 +7,10 @@
 ### JsonParser class pub:
 - .parse
 - [x] .getPort
-- [] .getHomePage
-- [] .getOtherPages
+- .getHomePage
+- .getOtherPages
 
 ### JsonParser class priv:
-- [] .getConfigText
-- [] .openConfigurationFile
-- [] .parsePage
+- .getConfigText
+- .openConfigurationFile
+- .parsePage
