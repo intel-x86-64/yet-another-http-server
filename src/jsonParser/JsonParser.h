@@ -7,12 +7,12 @@
 
 class JsonParser {
   std::string configFilePath;
-  std::string configText;
+  nlohmann::json config;
 
   void getConfigFromFile();
-  void openConfigurationFile();
 
 public:
   JsonParser(const std::string configFilePath);
+  int getPort();
   void start();
 };
