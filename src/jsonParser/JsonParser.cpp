@@ -1,6 +1,7 @@
 #include "JsonParser.h"
 #include <fstream>
 #include <iostream>
+#include <nlohmann/json_fwd.hpp>
 #include <stdexcept>
 #include <string>
 
@@ -19,9 +20,7 @@ void JsonParser::getConfigFromFile() {
   //     throw std::runtime_error("Configuration is empty");
   //   }
 
-  while (std::getline(file, line)) {
-    configText += line + "\n";
-  }
+  config = nlohmann::json::parse(file);
 
   file.close();
 }
@@ -32,4 +31,12 @@ void JsonParser::start() {
   } catch (const std::runtime_error &ex) {
     std::cerr << "Error: " << ex.what() << std::endl;
   }
+}
+
+int JsonParser::getPort() {
+  if (!config.contains("port")) {
+    throw std::runtime_error("config.json does not contain a port");
+  }
+
+  return config["port"];
 }
