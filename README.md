@@ -11,6 +11,5 @@
 - .getOtherPages
 
 ### JsonParser class priv:
-- .getConfigText
-- .openConfigurationFile
+- [x] .getConfigFromFile
 - .parsePage
