@@ -5,8 +5,8 @@
 ## ToDo:
 
 ### JsonParser class pub:
-- .parse
-- [x] .getPort
+- .start
+- [x] .getPort 
 - .getHomePage
 - .getOtherPages
 
