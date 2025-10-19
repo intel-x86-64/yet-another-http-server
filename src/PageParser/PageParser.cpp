@@ -1,3 +1,3 @@
 #include "PageParser.h"
 
-PageParser::PageParser() {}
+PageParser::PageParser(JsonParser jp) { urls = jp.getPathToPages(); }
