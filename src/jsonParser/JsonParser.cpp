@@ -8,7 +8,7 @@
 JsonParser::JsonParser(const std::string configFilePath)
     : configFilePath(configFilePath) {}
 
-void JsonParser::getConfigFromFile() {
+void JsonParser::parseConfigFromFile() {
   std::string line;
   std::ifstream file("config.json");
 
@@ -27,7 +27,7 @@ void JsonParser::getConfigFromFile() {
 
 void JsonParser::start() {
   try {
-    this->getConfigFromFile();
+    this->parseConfigFromFile();
   } catch (const std::runtime_error &ex) {
     std::cerr << "Error: " << ex.what() << std::endl;
   }

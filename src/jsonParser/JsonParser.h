@@ -9,7 +9,7 @@ class JsonParser {
   std::string configFilePath;
   nlohmann::json config;
 
-  void getConfigFromFile();
+  void parseConfigFromFile();
 
 public:
   JsonParser(const std::string configFilePath);
