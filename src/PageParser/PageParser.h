@@ -8,4 +8,5 @@ class PageParser {
 
 public:
   PageParser(JsonParser jp);
+  std::string parsePage(std::string page);
 };
