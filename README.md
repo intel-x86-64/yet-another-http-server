@@ -1,5 +1,7 @@
 # There's nothing here yet.
 
+![C/C++ CI](https://github.com/ТВОЙ_USERNAME/ТВОЙ_REPO_NAME/actions/workflows/ci.yml/badge.svg)
+
 ---
 
 ## ToDo:
