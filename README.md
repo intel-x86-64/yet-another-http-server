@@ -7,9 +7,8 @@
 ### JsonParser class pub:
 - .start -> void
 - [x] .getPort -> int
-- .getPathToPages -> string
+- .getPathToPages -> map<string, string>
 
 ### JsonParser class priv:
 - [x] .parseConfigFromFile -> void
-- .parseUrls -> void
-- .parsePage -> string
+- [x] .parseUrls -> void
