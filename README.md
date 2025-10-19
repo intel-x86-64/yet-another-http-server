@@ -15,7 +15,5 @@
 
 ### PageParser class pub:
 
-- [] .parsePage -> string
-- [] .start -> void
+- [x] .parsePage -> string
 
-### PageParses class priv:
