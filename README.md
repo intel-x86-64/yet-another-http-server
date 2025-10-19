@@ -12,3 +12,10 @@
 ### JsonParser class priv:
 - [x] .parseConfigFromFile -> void
 - [x] .parseUrls -> void
+
+### PageParser class pub:
+
+- [] .parsePage -> string
+- [] .start -> void
+
+### PageParses class priv:
