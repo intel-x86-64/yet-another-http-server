@@ -6,14 +6,15 @@
 #include <string>
 
 class JsonParser {
-    std::string configFilePath;
-    nlohmann::json config;
-    std::map<std::string, std::string> urls;
+  std::string configFilePath;
+  nlohmann::json config;
+  std::map<std::string, std::string> urls;
 
-    void parseConfigFromFile();
+  void parseConfigFromFile();
+  void parseUrls();
 
 public:
-    JsonParser(const std::string configFilePath);
-    int getPort();
-    void start();
+  JsonParser(const std::string configFilePath);
+  int getPort();
+  void start();
 };

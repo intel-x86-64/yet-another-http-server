@@ -25,11 +25,32 @@ void JsonParser::parseConfigFromFile() {
   file.close();
 }
 
+void JsonParser::parseUrls() {
+  if (!config.contains("Urls")) {
+    throw std::runtime_error(
+        "There are no links to pages in the configuration");
+  }
+
+  if (!config["Urls"].is_object()) {
+    throw std::runtime_error("Syntax error in page link configuration");
+  }
+
+  for (auto &[key, value] : config["Urls"].items()) {
+    urls.emplace(key, value);
+  }
+}
+
 void JsonParser::start() {
   try {
     this->parseConfigFromFile();
   } catch (const std::runtime_error &ex) {
     std::cerr << "Error: " << ex.what() << std::endl;
+  }
+
+  try {
+    this->parseUrls();
+  } catch (const std::runtime_error &ex) {
+    std::cerr << ex.what() << std::endl;
   }
 }
 
