@@ -1,5 +1,4 @@
-#pragma ONCE
-
+#pragma once
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <nlohmann/json_fwd.hpp>

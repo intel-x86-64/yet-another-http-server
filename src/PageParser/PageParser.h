@@ -1,7 +1,7 @@
-#include <string>
-#pragma ONCE
+#pragma once
 
-#include "../jsonParser/JsonParser.h"
+#include "../JsonParser/JsonParser.h"
+#include <string>
 
 class PageParser {
   std::map<std::string, std::string> urls;
