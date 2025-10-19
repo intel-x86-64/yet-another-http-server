@@ -8,6 +8,7 @@
 class JsonParser {
     std::string configFilePath;
     nlohmann::json config;
+    std::map<std::string, std::string> urls;
 
     void parseConfigFromFile();
 
