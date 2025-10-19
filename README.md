@@ -5,9 +5,9 @@
 ## ToDo:
 
 ### JsonParser class pub:
-- .start -> void
+- [x] .start -> void
 - [x] .getPort -> int
-- .getPathToPages -> map<string, string>
+- [x] .getPathToPages -> map<string, string>
 
 ### JsonParser class priv:
 - [x] .parseConfigFromFile -> void
