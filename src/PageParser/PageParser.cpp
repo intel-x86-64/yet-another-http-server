@@ -10,7 +10,7 @@ std::string PageParser::parsePage(std::string page) {
   file.open(urls[page]);
 
   if (!file.is_open()) {
-    throw std::runtime_error("Unable to open file" + urls[page]);
+    throw std::runtime_error("Unable to open " + urls[page]);
   }
 
   std::string returnPage, line;
