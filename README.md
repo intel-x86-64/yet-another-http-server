@@ -1,6 +1,6 @@
 # There's nothing here yet.
 
-![C/C++ CI](https://github.com/ТВОЙ_USERNAME/ТВОЙ_REPO_NAME/actions/workflows/ci.yml/badge.svg)
+![C/C++ CI](https://github.com/intel-x86-64/yet-another-http-server/actions/workflows/ci.yml/badge.svg)
 
 ---
 
