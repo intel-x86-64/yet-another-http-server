@@ -5,11 +5,11 @@
 ## ToDo:
 
 ### JsonParser class pub:
-- .start
-- [x] .getPort 
-- .getHomePage
-- .getOtherPages
+- .start -> void
+- [x] .getPort -> int
+- .getHomePage -> string
+- .getOtherPages -> string
 
 ### JsonParser class priv:
-- [x] .getConfigFromFile
+- [x] .parseConfigFromFile -> void
 - .parsePage
