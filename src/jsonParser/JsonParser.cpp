@@ -40,6 +40,8 @@ void JsonParser::parseUrls() {
   }
 }
 
+std::map<std::string, std::string> JsonParser::getPathToPages() { return urls; }
+
 void JsonParser::start() {
   try {
     this->parseConfigFromFile();

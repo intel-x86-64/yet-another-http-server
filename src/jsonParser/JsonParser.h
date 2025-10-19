@@ -16,5 +16,6 @@ class JsonParser {
 public:
   JsonParser(const std::string configFilePath);
   int getPort();
+  std::map<std::string, std::string> getPathToPages();
   void start();
 };
