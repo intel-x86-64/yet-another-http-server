@@ -6,16 +6,27 @@
 
 ## ToDo:
 
-### JsonParser class pub:
+### JsonParser class public:
 - [x] .start -> void
 - [x] .getPort -> int
 - [x] .getPathToPages -> map<string, string>
 
-### JsonParser class priv:
+### JsonParser class private:
 - [x] .parseConfigFromFile -> void
 - [x] .parseUrls -> void
 
-### PageParser class pub:
+### PageParser class public:
 
 - [x] .parsePage -> string
+
+### Server class public:
+- [] .start -> void
+
+### Server class private:
+
+- [] .createServerSocket -> void
+- [] .listen -> void
+- [] .requestProcessing -> void
+- [] .sendResponce -> void
+
 
