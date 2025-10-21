@@ -13,6 +13,7 @@ class JsonParser {
   void parseUrls();
 
 public:
+  JsonParser();
   JsonParser(const std::string configFilePath);
   int getPort();
   std::map<std::string, std::string> getPathToPages();
