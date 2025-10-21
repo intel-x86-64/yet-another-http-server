@@ -28,11 +28,15 @@ void Server::setupAddress(int port) {
 }
 
 Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
-  port = jsonParser.getPort();
+  try {
+    jsonParser.start();
+    port = jsonParser.getPort();
+  } catch (const std::runtime_error &ex) {
+    std::cerr << ex.what() << std::endl;
+  }
 }
 
 void Server::start() {
-  jsonParser.start();
 
   try {
 
