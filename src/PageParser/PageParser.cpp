@@ -4,8 +4,6 @@
 #include <stdexcept>
 #include <string>
 
-PageParser::PageParser() {};
-
 PageParser::PageParser(JsonParser jp) { urls = jp.getPathToPages(); }
 
 std::string PageParser::parsePage(std::string page) {
