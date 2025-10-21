@@ -2,12 +2,12 @@
 #include <iostream>
 #include <stdexcept>
 
-Server::Server() : jP("config.json"), pP(jP) {
+Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
 
-  jP.start();
+  jsonParser.start();
 
   try {
-    port = jP.getPort();
+    port = jsonParser.getPort();
   } catch (const std::runtime_error &ex) {
     std::cerr << ex.what() << std::endl;
   }

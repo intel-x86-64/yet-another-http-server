@@ -6,8 +6,8 @@
 #include <sys/types.h>
 
 class Server {
-  JsonParser jP;
-  PageParser pP;
+  JsonParser jsonParser;
+  PageParser pageParser;
   uint8_t port;
 
 public:
