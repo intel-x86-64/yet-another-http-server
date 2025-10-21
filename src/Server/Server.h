@@ -4,6 +4,7 @@
 #include "../PageParser/PageParser.h"
 #include <cstdint>
 #include <netinet/in.h>
+#include <string>
 #include <sys/socket.h>
 #include <sys/types.h>
 
@@ -18,7 +19,8 @@ class Server {
   void createSocket();
   void bindSocket();
   void listenSocket();
-  std::string handleClient(int clientSocket);
+  void handleClient(int clientSocket);
+  std::string requestProcessing(std::string request);
 
 public:
   Server();
