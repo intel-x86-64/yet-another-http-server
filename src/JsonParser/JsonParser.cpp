@@ -2,11 +2,15 @@
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json_fwd.hpp>
+#include <ostream>
 #include <stdexcept>
 #include <string>
 
 JsonParser::JsonParser(const std::string configFilePath)
-    : configFilePath(configFilePath) {}
+    : configFilePath(configFilePath) {
+  std::cout << "[INFO] [JSON PARSER CLASS] JsonParser constructor" << std::endl;
+  this->start();
+}
 
 void JsonParser::parseConfigFromFile() {
   std::string line;
@@ -16,6 +20,8 @@ void JsonParser::parseConfigFromFile() {
     throw std::runtime_error("Configuration " + configFilePath + " not open");
   }
 
+  std::cout << "[INFO] [JSON PARSER CLASS] open " + configFilePath << std::endl;
+
   //   if (file.tellg() == 0) {
   //     throw std::runtime_error("Configuration is empty");
   //   }
@@ -23,6 +29,9 @@ void JsonParser::parseConfigFromFile() {
   config = nlohmann::json::parse(file);
 
   file.close();
+
+  std::cout << "[INFO] [JSON PARSER CLASS] " + configFilePath + " close"
+            << std::endl;
 }
 
 void JsonParser::parseUrls() {
@@ -37,10 +46,18 @@ void JsonParser::parseUrls() {
 
   for (auto &[key, value] : config["Urls"].items()) {
     urls.emplace(key, value);
+    std::cout << "[INFO] [JSON PARSER CLASS] add " << key << " : " << value
+              << " to urls" << std::endl; // log
   }
 }
 
-std::map<std::string, std::string> JsonParser::getPathToPages() { return urls; }
+std::map<std::string, std::string> JsonParser::getPathToPages() {
+  std::cout << "[METHOD] getPathToPages" << std::endl; // log
+  for (auto &[key, value] : urls) {
+    std::cout << key << " : " << value << std::endl; // log
+  }
+  return urls;
+}
 
 void JsonParser::start() {
   try {
