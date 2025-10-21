@@ -18,6 +18,7 @@ class Server {
   void createSocket();
   void bindSocket();
   void listenSocket();
+  std::string handleClient(int clientSocket);
 
 public:
   Server();
