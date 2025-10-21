@@ -17,6 +17,7 @@ class Server {
   void setupAddress();
   void createSocket();
   void bindSocket();
+  void listenSocket();
 
 public:
   Server();
