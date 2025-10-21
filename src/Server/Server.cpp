@@ -14,6 +14,13 @@ void Server::createSocket(int port) {
   }
 }
 
+void Server::bindSocket() {
+  if (bind(serverSocket, reinterpret_cast<sockaddr *>(&address),
+           sizeof(address))) {
+    throw std::runtime_error("Binding error");
+  }
+}
+
 Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
 
   jsonParser.start();
