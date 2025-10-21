@@ -40,6 +40,12 @@ Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
   } catch (const std::runtime_error &ex) {
     std::cerr << ex.what() << std::endl;
   }
+
+  try {
+    this->bindSocket();
+  } catch (const std::runtime_error &ex) {
+    std::cerr << ex.what() << std::endl;
+  }
 }
 
 Server::~Server() {
