@@ -1,11 +1,15 @@
 #include "PageParser.h"
 #include <fstream>
+#include <iostream>
 #include <stdexcept>
 #include <string>
+
+PageParser::PageParser() {};
 
 PageParser::PageParser(JsonParser jp) { urls = jp.getPathToPages(); }
 
 std::string PageParser::parsePage(std::string page) {
+
   std::ifstream file;
   file.open(urls[page]);
 
