@@ -14,6 +14,7 @@ class Server {
   int serverSocket;
   sockaddr_in address;
 
+  void setupAddress(int port);
   void createSocket();
   void bindSocket();
 

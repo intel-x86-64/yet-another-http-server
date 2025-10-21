@@ -21,17 +21,21 @@ void Server::bindSocket() {
   }
 }
 
-Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
+void Server::setupAddress(int port) {
   address.sin_addr.s_addr = INADDR_ANY;
   address.sin_family = AF_INET;
   address.sin_port = htons(port);
+}
+
+Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
+  port = jsonParser.getPort();
 }
 
 void Server::start() {
   jsonParser.start();
 
   try {
-    port = jsonParser.getPort();
+
   } catch (const std::runtime_error &ex) {
     std::cerr << ex.what() << std::endl;
   }
@@ -50,6 +54,8 @@ void Server::start() {
 }
 
 Server::~Server() {
-  close(serverSocket);
-  std::cout << "The socket is closed" << std::endl << "Bye" << std::endl;
+  if (serverSocket >= 0) {
+    close(serverSocket);
+    std::cout << "The socket is closed" << std::endl << "Bye" << std::endl;
+  }
 }
