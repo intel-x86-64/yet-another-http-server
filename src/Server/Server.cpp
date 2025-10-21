@@ -32,7 +32,6 @@ void Server::setupAddress() {
 
 Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
   try {
-    jsonParser.start();
     port = jsonParser.getPort();
 
   } catch (const std::runtime_error &ex) {
