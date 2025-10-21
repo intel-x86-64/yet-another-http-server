@@ -1,6 +1,18 @@
 #include "Server.h"
 #include <iostream>
+#include <netinet/in.h>
 #include <stdexcept>
+#include <sys/socket.h>
+#include <unistd.h>
+
+void Server::createSocket(int port) {
+
+  serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+
+  if (serverSocket < 0) {
+    throw std::runtime_error("error creating socket");
+  }
+}
 
 Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
 
@@ -11,4 +23,19 @@ Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
   } catch (const std::runtime_error &ex) {
     std::cerr << ex.what() << std::endl;
   }
+
+  address.sin_addr.s_addr = INADDR_ANY;
+  address.sin_family = AF_INET;
+  address.sin_port = htons(port);
+
+  try {
+    this->createSocket(port);
+  } catch (const std::runtime_error &ex) {
+    std::cerr << ex.what() << std::endl;
+  }
+}
+
+Server::~Server() {
+  close(serverSocket);
+  std::cout << "The socket is closed" << std::endl << "Bye" << std::endl;
 }
