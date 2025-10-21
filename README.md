@@ -34,13 +34,13 @@
 - [x] .parsePage -> string
 
 ### Server class public:
-- [] .start -> void
+- [x] .start -> void
 
 ### Server class private:
 
-- [] .createServerSocket -> void
-- [] .listen -> void
-- [] .requestProcessing -> void
-- [] .sendResponce -> void
+- [x] .createServerSocket -> void
+- [x] .listen -> void
+- [x] .requestProcessing -> void
+- [x] .sendResponce -> void
 
 
