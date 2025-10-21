@@ -5,7 +5,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-void Server::createSocket(int port) {
+void Server::createSocket() {
 
   serverSocket = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -16,13 +16,18 @@ void Server::createSocket(int port) {
 
 void Server::bindSocket() {
   if (bind(serverSocket, reinterpret_cast<sockaddr *>(&address),
-           sizeof(address))) {
+           sizeof(address)) < 0) {
     throw std::runtime_error("Binding error");
   }
 }
 
 Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
+  address.sin_addr.s_addr = INADDR_ANY;
+  address.sin_family = AF_INET;
+  address.sin_port = htons(port);
+}
 
+void Server::start() {
   jsonParser.start();
 
   try {
@@ -31,12 +36,8 @@ Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
     std::cerr << ex.what() << std::endl;
   }
 
-  address.sin_addr.s_addr = INADDR_ANY;
-  address.sin_family = AF_INET;
-  address.sin_port = htons(port);
-
   try {
-    this->createSocket(port);
+    this->createSocket();
   } catch (const std::runtime_error &ex) {
     std::cerr << ex.what() << std::endl;
   }
