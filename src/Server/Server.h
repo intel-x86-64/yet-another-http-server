@@ -10,11 +10,11 @@
 class Server {
   JsonParser jsonParser;
   PageParser pageParser;
-  uint8_t port;
+  uint16_t port;
   int serverSocket;
   sockaddr_in address;
 
-  void setupAddress(int port);
+  void setupAddress();
   void createSocket();
   void bindSocket();
 
