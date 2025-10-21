@@ -2,7 +2,7 @@
 
 ![GitHub code size](https://img.shields.io/github/languages/code-size/intel-x86-64/yet-another-http-server)
 
-![GitHub last-commit](https://img.shields.io/github/languages/last-commit/intel-x86-64/yet-another-http-server)
+![GitHub last-commit](https://img.shields.io/codefactor/grade/github/intel-x86-64/yet-another-http-server)
 
 ---
 
