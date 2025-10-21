@@ -9,6 +9,7 @@ class Server {
   JsonParser jsonParser;
   PageParser pageParser;
   uint8_t port;
+  int serverSocket;
 
 public:
   Server();
