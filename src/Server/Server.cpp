@@ -8,6 +8,33 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
+  try {
+    port = jsonParser.getPort();
+
+  } catch (const std::runtime_error &ex) {
+    std::cerr << ex.what() << std::endl;
+  }
+}
+
+void Server::start() {
+  this->setupAddress();
+  try {
+    this->createSocket();
+    this->bindSocket();
+    this->listenSocket();
+
+  } catch (const std::runtime_error &ex) {
+    std::cerr << ex.what() << std::endl;
+  }
+}
+
+void Server::setupAddress() {
+  address.sin_addr.s_addr = INADDR_ANY;
+  address.sin_family = AF_INET;
+  address.sin_port = htons(port);
+}
+
 void Server::createSocket() {
 
   serverSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -22,43 +49,6 @@ void Server::bindSocket() {
            sizeof(address)) < 0) {
     throw std::runtime_error("Binding error");
   }
-}
-
-void Server::setupAddress() {
-  address.sin_addr.s_addr = INADDR_ANY;
-  address.sin_family = AF_INET;
-  address.sin_port = htons(port);
-}
-
-Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
-  try {
-    port = jsonParser.getPort();
-
-  } catch (const std::runtime_error &ex) {
-    std::cerr << ex.what() << std::endl;
-  }
-}
-
-std::string Server::requestProcessing(std::string request) {
-  std::istringstream stream(request);
-
-  std::string method, path, protocol;
-  stream >> method >> path >> protocol;
-
-  return pageParser.parsePage(path);
-}
-
-void Server::handleClient(int clientSocket) {
-  char buffer[1024]{0};
-  ssize_t bytesRead = read(clientSocket, buffer, 1023);
-  if (bytesRead < 0) {
-    throw std::runtime_error("Error read buffer");
-  }
-
-  std::string request{buffer};
-  std::string responce = requestProcessing(request);
-
-  send(clientSocket, responce.c_str(), responce.size(), 0);
 }
 
 void Server::listenSocket() {
@@ -81,17 +71,27 @@ void Server::listenSocket() {
   }
 }
 
-void Server::start() {
-  this->setupAddress();
-  try {
-    this->createSocket();
-    this->bindSocket();
-
-  } catch (const std::runtime_error &ex) {
-    std::cerr << ex.what() << std::endl;
+void Server::handleClient(int clientSocket) {
+  char buffer[1024]{0};
+  ssize_t bytesRead = read(clientSocket, buffer, 1023);
+  if (bytesRead < 0) {
+    throw std::runtime_error("Error read buffer");
   }
 
-  this->listenSocket();
+  std::string request{buffer};
+  std::string responce = requestProcessing(request);
+
+  send(clientSocket, responce.c_str(), responce.size(), 0);
+  close(clientSocket);
+}
+
+std::string Server::requestProcessing(std::string request) {
+  std::istringstream stream(request);
+
+  std::string method, path, protocol;
+  stream >> method >> path >> protocol;
+
+  return pageParser.parsePage(path);
 }
 
 Server::~Server() {
