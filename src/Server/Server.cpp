@@ -21,7 +21,7 @@ void Server::bindSocket() {
   }
 }
 
-void Server::setupAddress(int port) {
+void Server::setupAddress() {
   address.sin_addr.s_addr = INADDR_ANY;
   address.sin_family = AF_INET;
   address.sin_port = htons(port);
@@ -31,27 +31,20 @@ Server::Server() : jsonParser("config.json"), pageParser(jsonParser) {
   try {
     jsonParser.start();
     port = jsonParser.getPort();
+
   } catch (const std::runtime_error &ex) {
     std::cerr << ex.what() << std::endl;
   }
 }
 
+void Server::listenSocket() {}
+
 void Server::start() {
-
-  try {
-
-  } catch (const std::runtime_error &ex) {
-    std::cerr << ex.what() << std::endl;
-  }
-
+  this->setupAddress();
   try {
     this->createSocket();
-  } catch (const std::runtime_error &ex) {
-    std::cerr << ex.what() << std::endl;
-  }
-
-  try {
     this->bindSocket();
+
   } catch (const std::runtime_error &ex) {
     std::cerr << ex.what() << std::endl;
   }
