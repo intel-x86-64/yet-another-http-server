@@ -21,6 +21,7 @@ class Server {
   void listenSocket();
   void handleClient(int clientSocket);
   std::string requestProcessing(std::string request);
+  void sendResponse(int clientSocket, std::string responce);
 
 public:
   Server();
