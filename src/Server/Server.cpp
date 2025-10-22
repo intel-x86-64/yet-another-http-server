@@ -81,7 +81,7 @@ void Server::handleClient(int clientSocket) {
   std::string request{buffer};
   std::string responce = requestProcessing(request);
 
-  send(clientSocket, responce.c_str(), responce.size(), 0);
+  sendResponse(clientSocket, responce);
   close(clientSocket);
 }
 
@@ -90,8 +90,23 @@ std::string Server::requestProcessing(std::string request) {
 
   std::string method, path, protocol;
   stream >> method >> path >> protocol;
+  std::cout << "[GET]" << path << std::endl;
 
-  return pageParser.parsePage(path);
+  std::string body = pageParser.parsePage(path);
+
+  std::string response = "HTTP/1.1 200 OK\r\n";
+  response += "Content-Type: text/html; charset=utf-8\r\n";
+  response += "Content-Length: " + std::to_string(body.length()) + "\r\n";
+  response += "Connection: close\r\n";
+  response += "\r\n";
+  response += body;
+
+  return response;
+}
+
+void Server::sendResponse(int clientSocket, std::string responce) {
+  ssize_t bytesSend = send(clientSocket, responce.c_str(), responce.size(), 0);
+  std::cout << "[SEND] " << bytesSend << " bytes send" << std::endl;
 }
 
 Server::~Server() {
